@@ -6,12 +6,27 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct day3App: App {
+    
+    @StateObject var viewModel = AuthenticationViewModel()
+    
+    init() {
+        setupAuthentication()
+      }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DummyContentView()
+                .environmentObject(viewModel)
         }
     }
+}
+extension day3App{
+    
+    private func setupAuthentication() {
+       FirebaseApp.configure()
+     }
 }

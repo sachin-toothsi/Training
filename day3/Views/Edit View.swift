@@ -24,7 +24,7 @@ struct EditView: View{
     @State private var avatarImage = UIImage(named: "logo")!
 
     
-    let coreDM = CoreDataManager();
+    let coreDM = CoreDataManager()
     
 
     @Binding var showMenu : Bool
@@ -52,8 +52,7 @@ struct EditView: View{
                     .frame(width: 158, height: 158)
                     .clipShape(Circle())
                     
-                
-                        Form{
+                Form{
                             TextField("Name",text: $person_name)
                             TextField("Phone Number",text: $person_phone)
                             HStack {
@@ -155,8 +154,6 @@ struct EditView: View{
            .onAppear(perform: {
                 person_list.person_array = coreDM.getAllPerson()
             })
-
-        
     }
 }
 

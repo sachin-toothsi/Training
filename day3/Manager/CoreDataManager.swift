@@ -33,6 +33,16 @@ class CoreDataManager {
 
     }
     
+    func updatePerson(){
+          
+        do{
+            try persistentContainer.viewContext.save()
+        }  catch {
+            persistentContainer.viewContext.rollback()
+        }
+        
+    }
+    
     func savePerson(name : String, address : String, dob : Date, phone : String, gender : String, latitude : Double, longitude : Double){
         
         let person = Person(context: persistentContainer.viewContext)

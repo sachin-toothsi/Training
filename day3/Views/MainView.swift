@@ -13,10 +13,12 @@ struct MainView : View {
    
     @Binding var showMenu : Bool
     @Binding var selectedTab : String
+    
+    
     var body: some View {
         
         ZStack{
-              
+            
             TabView(selection: $selectedTab){
                 HomeView(showMenu: $showMenu)
                 .tabItem{
@@ -24,13 +26,13 @@ struct MainView : View {
                     Text("Home")
                 }.tag("Home")
                 
-            ListView(showMenu: $showMenu)
+                ListView(showMenu: $showMenu)
                 .tabItem{
                     Image(systemName:"list.bullet.rectangle")
                     Text("List")
                 }.tag("List")
 
-            EditView(showMenu: $showMenu)
+                EditView(showMenu: $showMenu)
                 .tabItem{
                     Image(systemName: "pencil.circle")
                     Text("Edit/Add")
@@ -46,7 +48,8 @@ struct MainView_Previews: PreviewProvider {
     @State static var value = false
     @State static var tabvalue = "Home"
     static var previews: some View {
-        MainView(showMenu: $value, selectedTab: $tabvalue )
+        MainView(showMenu: $value, selectedTab: $tabvalue)
             .environmentObject(Person_Class())
+            .environmentObject(AuthenticationViewModel())
     }
 }

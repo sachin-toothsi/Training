@@ -13,17 +13,22 @@ struct ListView: View{
     @Binding var showMenu : Bool
     @EnvironmentObject var person_list : Person_Class
     @State var person_array : [Person] = [Person]()
+    @State var needsRefresh : Bool = false
     //var person_array =  person_list.coreDM.getAllPerson()
-
+    
     var body: some View{
         NavigationView{
             VStack{
                 Text("ListView it is")
 
-                List(person_list.person_array,id: \.self){
-                        person in Text(person.name ?? "")
+                List{
+                    ForEach(person_list.person_array,id: \.self){
+                        person in
+                        NavigationLink(
+                            destination: UpdateView(person: person,needsRefresh: $needsRefresh),
+                            label: {Text(person.name ?? "") })
                     }
-
+                }.accentColor(needsRefresh ? .black : .black)
                     .navigationBarItems(leading: HStack{Image(systemName: "line.3.horizontal")
                                          .onTapGesture {
                           //showMenu toggle

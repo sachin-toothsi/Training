@@ -18,6 +18,9 @@ struct ContentView: View {
     @State var selectedTab = "Home"
     @ObservedObject private var person_list : Person_Class = Person_Class()
     
+    @EnvironmentObject var viewModel : AuthenticationViewModel
+   
+    
     var body: some View{
         
         VStack{
@@ -60,5 +63,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(AuthenticationViewModel())
     }
 }

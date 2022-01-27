@@ -13,8 +13,11 @@ struct MenuView: View {
     @State var value = false
     
     @Binding var showMenu : Bool
+    
     @Binding var selectedTab : String
     @EnvironmentObject var person_list : Person_Class
+    
+    
     
     var body: some View {
         
